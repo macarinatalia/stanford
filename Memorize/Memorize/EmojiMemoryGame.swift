@@ -17,7 +17,6 @@ class EmojiMemoryGame: ObservableObject {
     init(){
         self.theme = themes.randomElement()!
         model = EmojiMemoryGame.createMemoryGame(with: self.theme)
-        
     }
     
     static func createMemoryGame(with theme: Theme) -> MemoryGame<String>{

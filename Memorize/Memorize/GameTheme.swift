@@ -13,9 +13,7 @@ struct Theme {
     var emoji: Array<String>
     var color: Color
     var numberOfCardsToShow: Int?
-
-    
-    
+ 
 }
 
 let animals = Theme(name: "Animals", emoji: ["🐶","🦊","🐸","🐤","🐙"], color: .red, numberOfCardsToShow: 5)
