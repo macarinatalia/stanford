@@ -30,39 +30,30 @@ struct EmojiMemoryGameView: View {
             Text("\(score)")
                 .frame(width: 50, height: 40, alignment: .center)
                 .padding(10)
+                .foregroundColor(viewModel.theme.color)
         }
         
         
         
         
         Grid(viewModel.cards){ card in
-                CardView(card: card ).onTapGesture(perform: {
+            CardView(card: card, themeColor: viewModel.theme.color ).onTapGesture(perform: {
                     viewModel.chooseCard(card: card)
                 })//.aspectRatio(2/3, contentMode: .fit)
                 .padding(5)
            }
         
             .padding()
-            .foregroundColor(.orange)
+            .foregroundColor(viewModel.theme.color)
     }
 }
 
-struct OptionsView:  View {
-   // var score: MemoryGame<String>.score
-   
-    var body: some View {
-        
-        ZStack{
-            RoundedRectangle(cornerRadius: 3).fill(Color.red).frame(width: 200.0, height: 50.0, alignment: .center)
-            
-        }
-
-        
-    }
-}
 
 struct CardView: View{
+    
     var card: MemoryGame<String>.Card
+    var themeColor : Color
+    
     var body: some View{
         
         GeometryReader{ geometry in
@@ -74,16 +65,16 @@ struct CardView: View{
                     Text(card.content)
                 } else{
                     if !card.isMatched {
-                        RoundedRectangle(cornerRadius: cornerRadius).fill()
+                        RoundedRectangle(cornerRadius: cornerRadius).fill(
+                            LinearGradient(gradient: Gradient(colors: [themeColor.opacity(0.5), themeColor]),
+                                           startPoint: .topLeading,
+                                           endPoint: .bottomLeading)
+                        )
                     }
                 }
             }
             .font(Font.system(size: min(geometry.size.width, geometry.size.height) * fontScaleFactor))
-            
-            
         }
-        
-        
     }
     
     // MARK :- Drawing Constants

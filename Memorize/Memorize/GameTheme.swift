@@ -20,8 +20,8 @@ let animals = Theme(name: "Animals", emoji: ["🐶","🦊","🐸","🐤","🐙"]
 let smiles = Theme(name: "Smiles", emoji:  ["😎","🥶","🥰","😀","👿","🤡"], color: .yellow, numberOfCardsToShow: 6)
 let sport = Theme(name: "Sport", emoji: ["🏀", "⚽️","🏓","🧘🏻‍♂️","🪁","🏇🏽"], color: .green)
 let flags = Theme(name: "Flags", emoji: ["🇦🇹", "🇦🇩", "🇧🇪", "🇧🇷", "🇬🇧", "🇬🇷", "🇨🇦", "🇬🇪", "🇩🇪", "🇱🇷"], color: .gray, numberOfCardsToShow: 9)
-let balls = Theme(name: "Balls", emoji: ["⚽️", "🏀", "🎱", "🏈", "⚾️", "🥎", "🎾", "🏐", "🏉"], color: .gray, numberOfCardsToShow: 9)
-let food = Theme(name: "Food", emoji: ["🍓", "🥑", "🥖", "🌽", "🧄", "🍔", "🥐", "🍩", "🍭", "🎂"], color: .gray, numberOfCardsToShow: 10)
+let balls = Theme(name: "Balls", emoji: ["⚽️", "🏀", "🎱", "🏈", "⚾️", "🥎", "🎾", "🏐", "🏉"], color: .pink, numberOfCardsToShow: 9)
+let food = Theme(name: "Food", emoji: ["🍓", "🥑", "🥖", "🌽", "🧄", "🍔", "🥐", "🍩", "🍭", "🎂"], color: .blue, numberOfCardsToShow: 10)
 
 var themes = [animals, smiles, sport, flags, balls, food]
 

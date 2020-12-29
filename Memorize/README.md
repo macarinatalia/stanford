@@ -4,7 +4,7 @@
 
 ##### Task 3. Architect the concept of a “theme” into your game. A theme consists of a name for the theme, a set of emoji to use, a number of cards to show (which, for at least one, but not all themes, should be random), and an appropriate color to use to draw (e.g. orange would be appropriate for a Halloween theme). 
 
-```
+```swift
 // GameTheme.swift
 
 struct Theme : Identifiable {
@@ -13,14 +13,12 @@ struct Theme : Identifiable {
     var emoji: Array<String>
     var color: Color
     var numberOfCardsToShow: Int?
-
 }
-
 ```
 
 ##### Task 4. Support at least 6 different themes in your game. 
 
-```
+```swift
 // GameTheme.swift
 
 let animals = Theme(id: 0, name: "Animals", emoji: ["🐶","🦊","🐸","🐤","🐙"], color: .red, numberOfCardsToShow: 5)
@@ -31,14 +29,12 @@ let balls = Theme(id: 4, name: "Balls", emoji: ["⚽️", "🏀", "🎱", "🏈"
 let food = Theme(id: 5, name: "Food", emoji: ["🍓", "🥑", "🥖", "🌽", "🧄", "🍔", "🥐", "🍩", "🍭", "🎂"], color: .gray, numberOfCardsToShow: 10)
 
 var themes = [animals, smiles, sport, flags, balls, food]
-
 ```
 
 
 ##### Task 5. A new theme should be able to be added to your game with a single line of code. 
 
-```
-
+```swift
 //ViewModel
 
 var theme : Theme
@@ -56,12 +52,11 @@ static func createMemoryGame(with theme: Theme) -> MemoryGame<String>{
         return emoji[pairIndex]
     } )
 }
-
 ```
 
 ##### Task 6. Add a “New Game” button to your UI which begins a brand new game. This new game should have a randomly chosen theme.
 
-```
+```swift
 // View
 
 Button("New Game", action: {
@@ -77,25 +72,23 @@ func beginNewGame(){
     self.theme = Theme.themes.randomElement()!
     model = EmojiMemoryGame.createMemoryGame(with: self.theme)
 }
-
 ```
 
 
 ##### Task 7. Show the theme’s name somewhere in your UI. 
 
-```
+```swift
 // View
 
 let themeName: String = viewModel.theme.name
 Text("\(themeName)")
     .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
     .padding(10)
-
 ```
 
 ##### Task 8. Keep score in your game by giving 2 points for every match and penalizing 1 point for every previously seen card that is involved in a mismatch.
 
-```
+```swift
 // Model
 
 var score: Int = 0
@@ -129,12 +122,11 @@ mutating func choose(card: Card){
         }
     }
 }
-
 ```
 
 ##### Task 9. Display the score in your UI
 
-```
+```swift
 // View
 
 let score: Int = viewModel.score
@@ -148,5 +140,43 @@ Text("\(score)")
 var score: Int {
     model.score
 }
-
 ```
+
+##### Extra Credit 1. Support a gradient as the “color” for a theme.
+ * Add new property themeColor to CardView 
+ * Use  `LinearGradient()` inside `fill()` when the card is drawing
+ 
+ ```swift
+ // View
+ 
+ Grid(viewModel.cards){ card in
+     CardView(card: card, themeColor: viewModel.theme.color ).onTapGesture(perform: {
+             viewModel.chooseCard(card: card)
+         })
+         .padding(5)
+    }
+     .padding()
+     .foregroundColor(viewModel.theme.color)
+     
+     //...
+     
+struct CardView: View{
+         
+         var card: MemoryGame<String>.Card
+         var themeColor : Color
+         
+         var body: some View{
+         
+         //...
+             if !card.isMatched {
+                 RoundedRectangle(cornerRadius: cornerRadius).fill(
+                     LinearGradient(gradient: Gradient(colors: [themeColor.opacity(0.5), themeColor]),
+                                    startPoint: .topLeading,
+                                    endPoint: .bottomLeading)
+                 )
+             }
+ ```
+ 
+ ##### Screenshots
+ 
+ <img src="Screenshots\assignment2_1.png" width="800px" height="auto">
