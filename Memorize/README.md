@@ -175,8 +175,10 @@ struct CardView: View{
                                     endPoint: .bottomLeading)
                  )
              }
+         //...    
  ```
  
  ##### Screenshots
  
- <img src="Screenshots\assignment2_1.png" width="800px" height="auto">
+ <img src="Screenshots\assignment2_1.png" width="auto" height="auto">
+ <img src="Screenshots\assignment2_2.png" width="auto" height="auto">
