@@ -2,10 +2,7 @@
 
 ##### Task 1-2. Check if assingment 1 is done.
 
-##### Task 3. Architect the concept of a “theme” into your game. A theme consists of a name for
-the theme, a set of emoji to use, a number of cards to show (which, for at least one,
-but not all themes, should be random), and an appropriate color to use to draw (e.g.
-orange would be appropriate for a Halloween theme). 
+##### Task 3. Architect the concept of a “theme” into your game. A theme consists of a name for the theme, a set of emoji to use, a number of cards to show (which, for at least one, but not all themes, should be random), and an appropriate color to use to draw (e.g. orange would be appropriate for a Halloween theme). 
 
 ```
 // GameTheme.swift
@@ -40,12 +37,32 @@ var themes = [animals, smiles, sport, flags, balls, food]
 
 ##### Task 5. A new theme should be able to be added to your game with a single line of code. 
 
+```
 
-##### Task 6. Add a “New Game” button to your UI which begins a brand new game. This new
-game should have a randomly chosen theme.
+//ViewModel
+
+var theme : Theme
+
+init(){
+    self.theme = themes.randomElement()!
+    model = EmojiMemoryGame.createMemoryGame(with: self.theme)
+}
+
+static func createMemoryGame(with theme: Theme) -> MemoryGame<String>{
+    let emoji = theme.emoji.shuffled()
+    let numberOfPairs = (theme.numberOfCardsToShow != nil ? theme.numberOfCardsToShow : Int.random(in: 2..<theme.emoji.count))!
+    
+    return MemoryGame<String>(numberOfPairsOfCards: numberOfPairs, cardContentFactory: {pairIndex in
+        return emoji[pairIndex]
+    } )
+}
 
 ```
-// View.swift:
+
+##### Task 6. Add a “New Game” button to your UI which begins a brand new game. This new game should have a randomly chosen theme.
+
+```
+// View
 
 Button("New Game", action: {
             viewModel.beginNewGame()
@@ -54,7 +71,7 @@ Button("New Game", action: {
         .overlay(RoundedRectangle(cornerRadius: 10.0).stroke(Color.blue, lineWidth: 2.0))
 
 
-// ViewModel.swift:
+// ViewModel
 
 func beginNewGame(){
     self.theme = Theme.themes.randomElement()!
@@ -67,7 +84,7 @@ func beginNewGame(){
 ##### Task 7. Show the theme’s name somewhere in your UI. 
 
 ```
-// View.swift:
+// View
 
 let themeName: String = viewModel.theme.name
 Text("\(themeName)")
@@ -76,8 +93,7 @@ Text("\(themeName)")
 
 ```
 
-##### Task 8. Keep score in your game by giving 2 points for every match and penalizing 1 point for
-every previously seen card that is involved in a mismatch.
+##### Task 8. Keep score in your game by giving 2 points for every match and penalizing 1 point for every previously seen card that is involved in a mismatch.
 
 ```
 // Model
@@ -119,7 +135,7 @@ mutating func choose(card: Card){
 ##### Task 9. Display the score in your UI
 
 ```
-// View.swift:
+// View
 
 let score: Int = viewModel.score
 Text("\(score)")
@@ -127,7 +143,7 @@ Text("\(score)")
     .padding(10)
 
 
-// ViewModel.swift:
+// ViewModel
 
 var score: Int {
     model.score
