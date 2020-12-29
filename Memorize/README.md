@@ -180,5 +180,4 @@ struct CardView: View{
  
  ##### Screenshots
  
- <img src="Screenshots\assignment2_1.png" width="auto" height="auto">
- <img src="Screenshots\assignment2_2.png" width="auto" height="auto">
+ <img src="Screenshots\assignment2_1.png" width="auto" height="auto"> <img src="Screenshots\assignment2_2.png" width="auto" height="auto">
