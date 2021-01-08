@@ -19,7 +19,7 @@ class EmojiMemoryGame: ObservableObject {
         model = EmojiMemoryGame.createMemoryGame(with: self.theme)
     }
     
-    static func createMemoryGame(with theme: Theme) -> MemoryGame<String>{
+    private static func createMemoryGame(with theme: Theme) -> MemoryGame<String>{
         let emoji = theme.emoji.shuffled()
         let numberOfPairs = (theme.numberOfCardsToShow != nil ? theme.numberOfCardsToShow : Int.random(in: 2..<theme.emoji.count))!
         

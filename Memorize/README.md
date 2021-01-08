@@ -1,3 +1,17 @@
+# CS193p Spring 2020
+
+Here you can see my progress for the [Stanford's Course CS193p Spring 2020](https://cs193p.sites.stanford.edu). 
+
+My code and solutions are listed in the list below. 
+
+
+# Assignments
+
+Here is my solutions for the assignments for the Stanford's CS193p (Developing Apps for iOS) - Spring 2020.
+
+## Assignment 1
+
+
 ## Assignment 2
 
 ##### Task 1-2. Check if assingment 1 is done.
